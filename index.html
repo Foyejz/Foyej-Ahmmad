@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, shrink-to-fit=no">
+  <title>WhatsApp Automation | Resume</title>
+  <!-- Font Awesome 6 for icons (clean placeholder support) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0f4f8;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      color: #1e293b;
+      padding: 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .resume-card {
+      max-width: 720px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0,0,0,0.03);
+      overflow: hidden;
+      padding: 2rem 1.8rem;
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0.8rem;
+      }
+      .resume-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 2rem;
+      }
+    }
+
+    /* profile row with photo placeholder */
+    .profile-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+    }
+
+    .photo-placeholder {
+      width: 100px;
+      height: 100px;
+      min-width: 100px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 20px rgba(18, 140, 126, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .photo-placeholder i {
+      font-size: 3.2rem;
+      color: white;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+
+    .name-title h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      margin-bottom: 0.3rem;
+    }
+
+    .name-title .tagline {
+      background: #e8f5e9;
+      color: #075e54;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-top: 0.3rem;
+      letter-spacing: 0.3px;
+    }
+
+    .whatsapp-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #dcf8c6;
+      color: #075e54;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.35rem 1rem;
+      border-radius: 30px;
+      margin-top: 0.5rem;
+      width: fit-content;
+    }
+
+    .whatsapp-badge i {
+      font-size: 1rem;
+    }
+
+    /* section styling */
+    .section {
+      margin-top: 2rem;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.4rem;
+      font-weight: 650;
+      color: #0f172a;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid #e9eef2;
+      padding-bottom: 0.6rem;
+    }
+
+    .section-title i {
+      color: #25D366;
+      font-size: 1.5rem;
+      width: 2rem;
+      text-align: center;
+    }
+
+    /* About text */
+    .about-text {
+      color: #334155;
+      font-size: 1rem;
+      background: #f8fafc;
+      padding: 1.2rem 1.2rem;
+      border-radius: 1.2rem;
+      border-left: 4px solid #25D366;
+    }
+
+    /* skills grid */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .skill-chip {
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: 0.2s;
+      border: 1px solid #e2e8f0;
+    }
+
+    .skill-chip i {
+      color: #25D366;
+      font-size: 0.9rem;
+    }
+
+    /* experience cards */
+    .exp-item {
+      margin-bottom: 1.5rem;
+      background: #ffffff;
+      border: 1px solid #eef2f6;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+
+    .exp-company {
+      font-weight: 600;
+      color: #075e54;
+      background: #e8f5e9;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    .exp-date {
+      color: #64748b;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .exp-desc {
+      color: #475569;
+      font-size: 0.95rem;
+      margin-top: 0.4rem;
+      padding-left: 0.2rem;
+    }
+
+    /* projects */
+    .project-card {
+      background: #f9fafb;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid #e9eef2;
+    }
+
+    .project-name {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .project-link {
+      color: #128C7E;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+      background: #e6f0ee;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+
+    .project-link i {
+      font-size: 0.7rem;
+      margin-right: 0.2rem;
+    }
+
+    .project-desc {
+      color: #475569;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* contact */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      background: #f4f9f6;
+      padding: 1.2rem;
+      border-radius: 1.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: #1e293b;
+      flex-wrap: wrap;
+    }
+
+    .contact-item i {
+      width: 2rem;
+      font-size: 1.3rem;
+      color: #075e54;
+      background: white;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .contact-item a {
+      color: #0f172a;
+      text-decoration: none;
+      border-bottom: 1px dashed #25D366;
+    }
+
+    .placeholder-link {
+      background: #ffffff;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      color: #475569;
+      font-style: italic;
+      font-size: 0.8rem;
+      margin-left: 0.3rem;
+    }
+
+    hr {
+      margin: 1.5rem 0 0.8rem;
+      border: 0.5px solid #e2e8f0;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-card">
+    
+    <!-- Profile Header with Photo Placeholder -->
+    <div class="profile-header">
+      <div class="photo-placeholder">
+        <i class="fas fa-user-circle"></i>
+        <!-- Replace above <i> with <img src="your-photo.jpg" alt="profile" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"> -->
+      </div>
+      <div class="name-title">
+        <h1>Alex Rivera</h1>
+        <div class="tagline"><i class="fas fa-robot"></i> WhatsApp Automation Specialist</div>
+        <div class="whatsapp-badge">
+          <i class="fab fa-whatsapp"></i> Chatbot & API Developer
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="section">
+      <div class="section-title">
+        <i class="fas fa-user"></i> About
+      </div>
+      <div class="about-text">
+        Passionate WhatsApp automation engineer with 5+ years building conversational AI, chatbots, and business messaging solutions. Skilled in WhatsApp Cloud API, Twilio, and custom automation frameworks that streamline customer engagement. Focused on scalable, secure, and intelligent messaging experiences.
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section">
+      <div class="section-title">
+        <i class="fas fa-code"></i> Skills
+      </div>
+      <div class="skills-container">
+        <span class="skill-chip"><i class="fab fa-whatsapp"></i> WhatsApp Business API</span>
+        <span class="skill-chip"><i class="fas fa-cloud"></i> Twilio & MessageBird</span>
+        <span class="skill-chip"><i class="fas fa-brain"></i> Dialogflow / NLP</span>
+        <span class="skill-chip"><i class="fab fa-node-js"></i> Node.js & Python</span>
+        <span class="skill-chip"><i class="fas fa-database"></i> Firebase / MongoDB</span>
+        <span class="skill-chip"><i class="fas fa-link"></i> Webhooks & REST APIs</span>
+        <span class="skill-chip"><i class="fas fa-shield-alt"></i> OTP & Authentication</span>
+        <span class="skill-chip"><i class="fas fa-chart-line"></i> Chat Analytics</span>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="section">
+      <div class="section-title">
+        <i class="fas fa-briefcase"></i> Experience
+      </div>
+      
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Senior WhatsApp Automation Dev</span>
+          <span class="exp-company">ChatFlow Labs</span>
+        </div>
+        <div class="exp-date"><i class="far fa-calendar-alt"></i> Jan 2023 – Present</div>
+        <div class="exp-desc">
+          Architected WhatsApp notification system handling 2M+ messages/month. Built AI-driven support bot reducing response time by 70%. Integrated WhatsApp Pay and catalog APIs.
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Bot Developer</span>
+          <span class="exp-company">MsgAutomate Inc.</span>
+        </div>
+        <div class="exp-date"><i class="far fa-calendar-alt"></i> Jun 2020 – Dec 2022</div>
+        <div class="exp-desc">
+          Developed WhatsApp onboarding bots for 30+ SMBs. Created template message managers and automated drip campaigns via Twilio. Reduced manual customer support by 45%.
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="section">
+      <div class="section-title">
+        <i class="fas fa-laptop-code"></i> Projects
+      </div>
+      
+      <div class="project-card">
+        <div class="project-name">
+          <i class="fas fa-comment-dots" style="color:#25D366;"></i> WP Bulk Sender Pro
+          <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> github.com/placeholder</a>
+        </div>
+        <div class="project-desc">
+          WhatsApp bulk messaging tool with scheduling, template variables, and delivery reports. Built with Node.js & Baileys. (placeholder link)
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">
+          <i class="fas fa-store-alt" style="color:#128C7E;"></i> ShopBot for WhatsApp
+          <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> demo.placeholder</a>
+        </div>
+        <div class="project-desc">
+          Conversational commerce bot with product search, cart, and order tracking via WhatsApp Cloud API. (placeholder link)
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section">
+      <div class="section-title">
+        <i class="fas fa-address-card"></i> Contact
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>alex.r@whatsappauto.dev</span>
+          <span class="placeholder-link">(placeholder email)</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <span>+1 (555) 123-4567</span>
+          <span class="placeholder-link">(WhatsApp placeholder)</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <a href="#">linkedin.com/in/alexrivera</a>
+          <span class="placeholder-link">(link placeholder)</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <a href="#">github.com/alex-r-automation</a>
+          <span class="placeholder-link">(link placeholder)</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-globe"></i>
+          <a href="#">portfolio-alex.placeholder</a>
+          <span class="placeholder-link">(website placeholder)</span>
+        </div>
+      </div>
+    </div>
+    
+    <hr>
+    <div class="footer-note">
+      <i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp automation resume • generated with placeholders
+    </div>
+  </div>
+</body>
+</html></</html>html>
